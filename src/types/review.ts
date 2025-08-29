@@ -1,6 +1,5 @@
 /**
- * Core Review types for the Revvue AI Dashboard
- * These interfaces define the shape of review data from the GraphQL API
+ * TypeScript interfaces for review data
  */
 
 export interface Review {

@@ -1,6 +1,5 @@
 /**
- * Professional Review Card Component
- * Modern pastel purple brand identity with glass morphism accents
+ * Individual review card component with interactive elements
  */
 
 import { Star, Calendar, MapPin, User } from "lucide-react";
@@ -122,7 +121,7 @@ export const ReviewCard = ({
   );
 };
 
-// 🎨 STUNNING PASTEL PURPLE BRAND STYLING
+// Card styling
 const cardStyle: React.CSSProperties = {
   background: "#FFFFFF",
   border: "1px solid #F3E8FF",
@@ -142,7 +141,7 @@ const cardStyle: React.CSSProperties = {
   } as any,
 };
 
-// 🔮 GLASS MORPHISM HEADER
+// Glass morphism header
 const glassHeaderStyle: React.CSSProperties = {
   background: "rgba(255, 255, 255, 0.1)",
   backdropFilter: "blur(20px)",
@@ -265,7 +264,7 @@ const sourceTagStyle: React.CSSProperties = {
   border: "1px solid rgba(139, 92, 246, 0.15)",
 };
 
-// 🔮 REVVUE BRAND GRADIENT HOVER EFFECTS
+// Hover effects
 const glassHoverStyle: React.CSSProperties = {
   background:
     "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)",
@@ -278,7 +277,7 @@ const glassHoverStyle: React.CSSProperties = {
   color: "#FFFFFF", // White text on gradient
 };
 
-// 🔥 REVVUE BRAND GRADIENT CLICK EFFECTS
+// Click effects
 const glassClickStyle: React.CSSProperties = {
   background:
     "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)",

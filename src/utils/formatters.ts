@@ -1,5 +1,5 @@
 /**
- * Utility functions for formatting data in the reviews dashboard
+ * Utility functions for data formatting
  */
 
 /**

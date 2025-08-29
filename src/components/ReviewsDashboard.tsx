@@ -1,6 +1,5 @@
 /**
- * Main Reviews Dashboard Component
- * Combines all UI components into a beautiful, cohesive interface
+ * Main dashboard component for displaying and managing reviews
  */
 
 import { useState, useEffect, useCallback, useMemo } from "react";

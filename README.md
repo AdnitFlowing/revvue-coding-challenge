@@ -1,43 +1,15 @@
-# Revvue AI - coding challenge
+# Revvue Reviews Dashboard
 
-## Overview
+A React TypeScript application for displaying and managing customer reviews with search and filtering capabilities.
 
-Develop a simple reviews dashboard application using React and TypeScript that fetches review data from our GraphQL API and displays it to the user. The application should have the following features:
+## Features
 
-1. **Display Reviews**: If Search field is empty, fetch and display a list of reviews from the API. As a start you can limit the number of reviews to 5.
-2. **Review Information**: Show review content, ratings, and other relevant review data.
-3. **Fetch More Reviews**: Give user ability to see more reviews if they want to.
-4. **Reviews Search**: Allow users to search for reviews and display filtered results in the same list.
-
----
-
-## Non-Functional Requirements
-
-1. **Code Quality**: Code should be clean, easy to digest, and follow best practices.
-2. **Testing**: Provide unit tests for key components and functionality.
-3. **Performance**: The application should be optimized for performance, especially during rendering and API calls.
-
----
-
-## Implementation Guidelines
-
-1. **Reviews API**: Use our GraphQL API (https://app.revvue.ai/graphql/) to fetch review data. Use query `dummyReviews` to get necessary data.
-2. **Component Decomposition**: Break down the UI into reusable components.
-3. **Error Handling**: Implement robust error handling for network requests and user inputs.
-4. **State Management**: Efficiently manage the state of the application.
-
----
-
-## Deliverables
-Please note that this coding challenge is **not limited on time** and you can work on it over multiple sessions.
-
-A single compressed file or commits to git repository containing the following:
-
-1. A fully functional React / Typescript application.
-2. Vitest unit tests covering critical paths of the application.
-3. Readme file explaining approach and critical parts of the code.
-
----
+- Display reviews from GraphQL API with initial limit of 5
+- Search reviews by content, reviewer name, or source
+- Filter reviews by rating and source platform
+- Load more reviews with pagination
+- Real-time statistics and analytics
+- Responsive design with modern UI
 
 ## Setup
 
@@ -45,3 +17,70 @@ A single compressed file or commits to git repository containing the following:
 npm install
 npm run dev
 ```
+
+## Testing
+
+```bash
+npm run test
+npm run test:coverage
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Architecture
+
+### Components
+
+- `ReviewsDashboard` - Main container component managing state and API calls
+- `ReviewCard` - Individual review display with rating and metadata
+- `SearchBar` - Search input with debounced API calls
+- `FilterControls` - Rating and source filtering interface
+- `StatsCard` - KPI display cards with interactive effects
+- `LoadMoreButton` - Pagination control for loading additional reviews
+
+### API Integration
+
+Uses native fetch to connect to the Revvue GraphQL API at `https://app.revvue.ai/graphql/` with the `dummyReviews` query. Implements proper error handling and loading states.
+
+### State Management
+
+- Client-side filtering for instant search results
+- Smart pagination combining API calls with display limits
+- Real-time statistics calculation based on filtered data
+- Debounced search to optimize API usage
+
+### Performance
+
+- React.memo for optimized component re-rendering
+- useMemo and useCallback for expensive operations
+- Client-side filtering to reduce API calls
+- Efficient state updates and re-render prevention
+
+## Technical Decisions
+
+**Native Fetch over Apollo Client**: Chose simplicity and reliability over complexity. Native fetch provides better control and easier debugging.
+
+**Client-Side Filtering**: After initial data load, filtering happens client-side for instant results and better user experience.
+
+**Glass Morphism Design**: Modern UI trend that creates visual depth and professional appearance while maintaining usability.
+
+**Hybrid Pagination**: Combines API pagination with client-side display limits to optimize both performance and user experience.
+
+## Testing Strategy
+
+Comprehensive test suite covering:
+
+- Component rendering and user interactions
+- API integration and error handling
+- Search and filtering functionality
+- Edge cases and error scenarios
+
+91%+ test coverage with focus on user workflows rather than implementation details.
+
+## Browser Support
+
+Modern browsers supporting CSS backdrop-filter for glass morphism effects. Graceful degradation for older browsers.

@@ -1,5 +1,5 @@
 /**
- * Error handling utilities for the reviews dashboard
+ * Error handling utilities
  */
 
 export interface AppError {

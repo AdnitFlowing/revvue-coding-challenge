@@ -1,5 +1,5 @@
 /**
- * Application constants and configuration
+ * Application configuration
  */
 
 export const API_CONFIG = {

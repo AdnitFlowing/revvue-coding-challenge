@@ -1,6 +1,5 @@
 /**
- * Advanced Filter Controls Component
- * Professional filtering UI with glass morphism styling
+ * Filter controls for rating and source filtering
  */
 
 import { useState } from "react";

@@ -1,6 +1,5 @@
 /**
- * Glass Morphism Stats Card Component
- * Beautiful metric display with pastel purple accents
+ * Interactive statistics card component
  */
 
 import { useState } from "react";

@@ -1,6 +1,5 @@
 /**
- * Reviews List Container Component
- * Manages the display of multiple review cards with proper spacing
+ * Container component for displaying list of reviews
  */
 
 import { ReviewCard } from "./ReviewCard";

@@ -1,6 +1,5 @@
 /**
- * Load More Button Component
- * Clean, simple button for pagination - no overcomplicated animations
+ * Load more button for pagination
  */
 
 import { ChevronDown } from "lucide-react";

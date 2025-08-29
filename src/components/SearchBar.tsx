@@ -1,6 +1,5 @@
 /**
- * Glass Morphism Search Bar Component
- * Features modern glass morphism design that will absolutely stand out!
+ * Search bar component with auto-focus and debounced search
  */
 
 import { Search, X } from "lucide-react";
