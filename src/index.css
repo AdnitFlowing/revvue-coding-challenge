@@ -66,6 +66,18 @@ h6 {
   }
 }
 
+/* Smooth slide down animation for filter panel */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Glass morphism input placeholder styling */
 input::placeholder {
   color: #9ca3af !important;

@@ -3,11 +3,12 @@
  * Combines all UI components into a beautiful, cohesive interface
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { SearchBar } from "./SearchBar";
 import { ReviewsList } from "./ReviewsList";
 import { LoadMoreButton } from "./LoadMoreButton";
 import { StatsCard } from "./StatsCard";
+import { FilterControls } from "./FilterControls";
 import { Star, TrendingUp, MessageCircle } from "lucide-react";
 
 interface Review {
@@ -33,6 +34,12 @@ export const ReviewsDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [totalCount, setTotalCount] = useState(0);
   const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [allReviews, setAllReviews] = useState<Review[]>([]); // Store all fetched reviews
+  const [filters, setFilters] = useState({
+    minRating: null as number | null,
+    maxRating: null as number | null,
+    sources: [] as string[],
+  });
 
   // Fetch initial reviews
   useEffect(() => {
@@ -92,8 +99,11 @@ export const ReviewsDashboard = () => {
       const data: ApiResponse = result.data;
 
       if (append) {
-        setReviews((prev) => [...prev, ...data.dummyReviews.documents]);
+        const newReviews = [...allReviews, ...data.dummyReviews.documents];
+        setAllReviews(newReviews);
+        setReviews(newReviews);
       } else {
+        setAllReviews(data.dummyReviews.documents);
         setReviews(data.dummyReviews.documents);
       }
 
@@ -137,16 +147,62 @@ export const ReviewsDashboard = () => {
     }, 4000);
   }, []);
 
+  // Handle filter changes with smart filtering
+  const handleFilterChange = useCallback((newFilters: typeof filters) => {
+    setFilters(newFilters);
+  }, []);
+
+  // Smart filtering logic - filter client-side for better performance
+  const filteredReviews = useMemo(() => {
+    let filtered = searchTerm
+      ? allReviews.filter(
+          (review) =>
+            review.reviewText
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase()) ||
+            review.reviewerName
+              ?.toLowerCase()
+              .includes(searchTerm.toLowerCase()) ||
+            review.source.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : allReviews;
+
+    // Apply rating filter
+    if (filters.minRating) {
+      filtered = filtered.filter(
+        (review) => review.rating >= filters.minRating!
+      );
+    }
+
+    // Apply source filter
+    if (filters.sources.length > 0) {
+      filtered = filtered.filter((review) =>
+        filters.sources.includes(review.source)
+      );
+    }
+
+    return filtered;
+  }, [allReviews, searchTerm, filters]);
+
+  // Get available sources for filter dropdown
+  const availableSources = useMemo(() => {
+    const sources = Array.from(
+      new Set(allReviews.map((review) => review.source))
+    );
+    return sources.sort();
+  }, [allReviews]);
+
   const hasMore = reviews.length < totalCount;
 
-  // Calculate stats for glass morphism cards
-  const averageRating =
-    reviews.length > 0
+  // Calculate stats for glass morphism cards based on filtered results
+  const averageRating = useMemo(() => {
+    return filteredReviews.length > 0
       ? (
-          reviews.reduce((sum, review) => sum + review.rating, 0) /
-          reviews.length
+          filteredReviews.reduce((sum, review) => sum + review.rating, 0) /
+          filteredReviews.length
         ).toFixed(1)
       : "0.0";
+  }, [filteredReviews]);
 
   return (
     <div style={dashboardStyle}>
@@ -174,7 +230,7 @@ export const ReviewsDashboard = () => {
         <StatsCard
           title="Average Rating"
           value={`${averageRating} ⭐`}
-          subtitle="Current display"
+          subtitle="Filtered results"
           onClick={() => handleCardClick("rating")}
           isActive={activeCard === "rating"}
           icon={
@@ -183,9 +239,11 @@ export const ReviewsDashboard = () => {
         />
         <StatsCard
           title="Showing"
-          value={reviews.length}
+          value={filteredReviews.length}
           subtitle={
-            searchTerm ? `Results for "${searchTerm}"` : "Recent reviews"
+            searchTerm || filters.minRating || filters.sources.length > 0
+              ? "Filtered results"
+              : "All reviews"
           }
           onClick={() => handleCardClick("showing")}
           isActive={activeCard === "showing"}
@@ -206,26 +264,36 @@ export const ReviewsDashboard = () => {
         isLoading={loading}
       />
 
-      {/* Reviews List */}
+      {/* Advanced Filter Controls */}
+      <FilterControls
+        onFilterChange={handleFilterChange}
+        availableSources={availableSources}
+        isLoading={loading}
+      />
+
+      {/* Reviews List with Filtered Results */}
       <ReviewsList
-        reviews={reviews}
-        loading={loading && reviews.length === 0}
+        reviews={filteredReviews}
+        loading={loading && allReviews.length === 0}
         error={error}
         emptyMessage={
-          searchTerm
-            ? `No reviews found for "${searchTerm}"`
+          searchTerm || filters.minRating || filters.sources.length > 0
+            ? "No reviews match your filters"
             : "No reviews available"
         }
       />
 
       {/* Load More Button */}
-      {reviews.length > 0 && (
-        <LoadMoreButton
-          onLoadMore={handleLoadMore}
-          loading={loading}
-          hasMore={hasMore}
-        />
-      )}
+      {allReviews.length > 0 &&
+        !searchTerm &&
+        filters.sources.length === 0 &&
+        !filters.minRating && (
+          <LoadMoreButton
+            onLoadMore={handleLoadMore}
+            loading={loading}
+            hasMore={hasMore}
+          />
+        )}
     </div>
   );
 };
