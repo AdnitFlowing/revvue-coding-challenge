@@ -27,9 +27,18 @@ export interface DummyReviewsQueryResponse {
 }
 
 export interface ReviewsQueryVariables {
+  source?: string;
+  ratingMin?: number;
+  ratingMax?: number;
+  freeText?: string;
+  offset?: number;
+  limit?: number;
+}
+
+export interface SearchReviewsVariables {
+  searchTerm: string;
   limit?: number;
   offset?: number;
-  searchTerm?: string;
 }
 
 export interface ReviewsState {
