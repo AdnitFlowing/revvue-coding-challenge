@@ -1,5 +1,5 @@
 /**
- * Comprehensive tests for ReviewCard component
+ *  ReviewCard component
  * Tests rendering, interactions, and glass morphism effects
  */
 

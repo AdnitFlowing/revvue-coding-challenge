@@ -1,6 +1,6 @@
 # Revvue Reviews Dashboard
 
-A React TypeScript application for displaying and managing customer reviews with search and filtering capabilities.
+A React TypeScript application for displaying customer reviews with search and filtering capabilities.
 
 ## Features
 
@@ -62,13 +62,7 @@ Uses native fetch to connect to the Revvue GraphQL API at `https://app.revvue.ai
 
 ## Technical Decisions
 
-**Native Fetch over Apollo Client**: Chose simplicity and reliability over complexity. Native fetch provides better control and easier debugging.
-
 **Client-Side Filtering**: After initial data load, filtering happens client-side for instant results and better user experience.
-
-**Glass Morphism Design**: Modern UI trend that creates visual depth and professional appearance while maintaining usability.
-
-**Hybrid Pagination**: Combines API pagination with client-side display limits to optimize both performance and user experience.
 
 ## Testing Strategy
 
@@ -78,9 +72,3 @@ Comprehensive test suite covering:
 - API integration and error handling
 - Search and filtering functionality
 - Edge cases and error scenarios
-
-91%+ test coverage with focus on user workflows rather than implementation details.
-
-## Browser Support
-
-Modern browsers supporting CSS backdrop-filter for glass morphism effects. Graceful degradation for older browsers.
