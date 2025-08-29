@@ -132,13 +132,6 @@ const cardStyle: React.CSSProperties = {
     "0 4px 20px rgba(139, 92, 246, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)",
   overflow: "hidden",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-
-  ":hover": {
-    boxShadow:
-      "0 8px 32px rgba(139, 92, 246, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08)",
-    transform: "translateY(-2px)",
-    borderColor: "#E9D5FF",
-  } as any,
 };
 
 // Glass morphism header

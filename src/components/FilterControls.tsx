@@ -28,6 +28,7 @@ export const FilterControls = ({
     sources: [],
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
   const handleRatingFilter = (min: number | null, max: number | null) => {
     const newFilters = { ...filters, minRating: min, maxRating: max };
@@ -60,8 +61,11 @@ export const FilterControls = ({
       <div style={filterToggleContainerStyle}>
         <button
           onClick={() => setShowFilters(!showFilters)}
+          onMouseEnter={() => setHoveredButton("filterToggle")}
+          onMouseLeave={() => setHoveredButton(null)}
           style={{
             ...filterToggleStyle,
+            ...(hoveredButton === "filterToggle" && filterToggleHoverStyle),
             background: hasActiveFilters
               ? "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)"
               : filterToggleStyle.background,
@@ -89,7 +93,12 @@ export const FilterControls = ({
         {hasActiveFilters && (
           <button
             onClick={handleClearFilters}
-            style={clearFiltersStyle}
+            onMouseEnter={() => setHoveredButton("clearFilters")}
+            onMouseLeave={() => setHoveredButton(null)}
+            style={{
+              ...clearFiltersStyle,
+              ...(hoveredButton === "clearFilters" && clearFiltersHoverStyle),
+            }}
             disabled={isLoading}
           >
             <RotateCcw size={16} />
@@ -109,8 +118,12 @@ export const FilterControls = ({
                 <button
                   key={rating}
                   onClick={() => handleRatingFilter(rating, 5)}
+                  onMouseEnter={() => setHoveredButton(`rating-${rating}`)}
+                  onMouseLeave={() => setHoveredButton(null)}
                   style={{
                     ...ratingButtonStyle,
+                    ...(hoveredButton === `rating-${rating}` &&
+                      ratingButtonHoverStyle),
                     background:
                       filters.minRating === rating
                         ? "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)"
@@ -134,8 +147,12 @@ export const FilterControls = ({
                 <button
                   key={source}
                   onClick={() => handleSourceToggle(source)}
+                  onMouseEnter={() => setHoveredButton(`source-${source}`)}
+                  onMouseLeave={() => setHoveredButton(null)}
                   style={{
                     ...sourceButtonStyle,
+                    ...(hoveredButton === `source-${source}` &&
+                      sourceButtonHoverStyle),
                     background: filters.sources.includes(source)
                       ? "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)"
                       : sourceButtonStyle.background,
@@ -156,7 +173,6 @@ export const FilterControls = ({
   );
 };
 
-// 🎨 PROFESSIONAL FILTER STYLING
 const containerStyle: React.CSSProperties = {
   maxWidth: "800px",
   margin: "0 auto 2rem",
@@ -185,12 +201,12 @@ const filterToggleStyle: React.CSSProperties = {
   color: "#8B5CF6",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   boxShadow: "0 4px 16px rgba(139, 92, 246, 0.08)",
+};
 
-  ":hover": {
-    border: "2px solid rgba(139, 92, 246, 0.3)",
-    transform: "translateY(-1px)",
-    boxShadow: "0 8px 24px rgba(139, 92, 246, 0.12)",
-  } as any,
+const filterToggleHoverStyle: React.CSSProperties = {
+  border: "2px solid rgba(139, 92, 246, 0.3)",
+  transform: "translateY(-1px)",
+  boxShadow: "0 8px 24px rgba(139, 92, 246, 0.12)",
 };
 
 const badgeStyle: React.CSSProperties = {
@@ -214,10 +230,10 @@ const clearFiltersStyle: React.CSSProperties = {
   fontWeight: "500",
   color: "#DC2626",
   transition: "all 0.3s ease",
+};
 
-  ":hover": {
-    background: "rgba(220, 38, 38, 0.15)",
-  } as any,
+const clearFiltersHoverStyle: React.CSSProperties = {
+  background: "rgba(220, 38, 38, 0.15)",
 };
 
 // 🔮 WHITE BACKGROUND FILTER PANEL WITH GLASS MORPHISM OUTLINE
@@ -265,12 +281,12 @@ const ratingButtonStyle: React.CSSProperties = {
   color: "#8B5CF6",
   transition: "all 0.3s ease",
   boxShadow: "0 2px 8px rgba(139, 92, 246, 0.05)",
+};
 
-  ":hover": {
-    border: "1px solid rgba(139, 92, 246, 0.3)",
-    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
-    transform: "translateY(-1px)",
-  } as any,
+const ratingButtonHoverStyle: React.CSSProperties = {
+  border: "1px solid rgba(139, 92, 246, 0.3)",
+  boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
+  transform: "translateY(-1px)",
 };
 
 const sourceFilterStyle: React.CSSProperties = {
@@ -290,10 +306,10 @@ const sourceButtonStyle: React.CSSProperties = {
   color: "#8B5CF6",
   transition: "all 0.3s ease",
   boxShadow: "0 2px 8px rgba(139, 92, 246, 0.05)",
+};
 
-  ":hover": {
-    border: "1px solid rgba(139, 92, 246, 0.3)",
-    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
-    transform: "translateY(-1px)",
-  } as any,
+const sourceButtonHoverStyle: React.CSSProperties = {
+  border: "1px solid rgba(139, 92, 246, 0.3)",
+  boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
+  transform: "translateY(-1px)",
 };

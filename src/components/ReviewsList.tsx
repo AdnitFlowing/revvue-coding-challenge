@@ -79,7 +79,6 @@ export const ReviewsList = ({
   );
 };
 
-// 🎨 CLEAN, PROFESSIONAL STYLING
 const containerStyle: React.CSSProperties = {
   maxWidth: "800px",
   margin: "0 auto",
@@ -168,11 +167,6 @@ const emptyContainerStyle: React.CSSProperties = {
   alignItems: "center",
   padding: "3rem 1rem",
   textAlign: "center",
-};
-
-const emptyIconStyle: React.CSSProperties = {
-  fontSize: "2rem",
-  marginBottom: "1rem",
 };
 
 const emptyTitleStyle: React.CSSProperties = {

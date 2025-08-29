@@ -9,7 +9,6 @@ import { LoadMoreButton } from "./LoadMoreButton";
 import { StatsCard } from "./StatsCard";
 import { FilterControls } from "./FilterControls";
 import { Star, TrendingUp, MessageCircle } from "lucide-react";
-import { APP_CONFIG } from "../config/constants";
 
 interface Review {
   id: string;
@@ -45,7 +44,7 @@ export const ReviewsDashboard = () => {
     fetchReviews();
   }, []);
 
-  const fetchReviews = async (search?: string, append = false, offset = 0) => {
+  const fetchReviews = async (search?: string, append = false) => {
     try {
       if (!append) setLoading(true);
 
@@ -138,8 +137,7 @@ export const ReviewsDashboard = () => {
       setDisplayLimit((prev) => prev + 5);
     } else if (hasMoreFromApi) {
       // If we've shown all loaded reviews, fetch more from API
-      const currentOffset = allReviews.length;
-      fetchReviews(searchTerm || undefined, true, currentOffset);
+      fetchReviews(searchTerm || undefined, true);
     }
   };
 
@@ -311,7 +309,6 @@ export const ReviewsDashboard = () => {
   );
 };
 
-// 🎨 STUNNING DASHBOARD STYLING
 const dashboardStyle: React.CSSProperties = {
   minHeight: "100vh",
   background: "transparent", // Let the light background from index.css show through
@@ -319,7 +316,6 @@ const dashboardStyle: React.CSSProperties = {
   paddingTop: "0", // No top padding since header handles its own spacing
 };
 
-// 🎨 CLEAN TITLE STYLING
 const titleContainerStyle: React.CSSProperties = {
   textAlign: "center",
   padding: "3rem 1rem 2rem",

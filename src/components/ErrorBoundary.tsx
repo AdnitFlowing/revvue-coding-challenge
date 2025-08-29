@@ -2,7 +2,8 @@
  * Error boundary for graceful error handling
  */
 
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component } from "react";
+import type { ErrorInfo, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -64,7 +65,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-// 🎨 ERROR BOUNDARY STYLING
+//  ERROR BOUNDARY STYLING
 const errorContainerStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -109,11 +110,6 @@ const retryButtonStyle: React.CSSProperties = {
   fontWeight: "600",
   cursor: "pointer",
   transition: "all 0.3s ease",
-
-  ":hover": {
-    transform: "translateY(-1px)",
-    boxShadow: "0 4px 12px rgba(76, 62, 247, 0.3)",
-  } as any,
 };
 
 const errorDetailsStyle: React.CSSProperties = {

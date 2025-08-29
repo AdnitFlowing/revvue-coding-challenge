@@ -111,11 +111,6 @@ const hoverCardStyle: React.CSSProperties = {
   border: "none", // No border on beautiful gradient
 };
 
-// Update text colors for gradient background
-const hoverTextOverride: React.CSSProperties = {
-  color: "#FFFFFF !important",
-};
-
 const headerStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",

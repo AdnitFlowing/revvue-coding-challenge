@@ -52,7 +52,6 @@ export const LoadMoreButton = ({
   );
 };
 
-// 🎨 CLEAN, SIMPLE STYLING
 const containerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
@@ -75,17 +74,6 @@ const buttonStyle: React.CSSProperties = {
   cursor: "pointer",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   boxShadow: "0 4px 16px rgba(139, 92, 246, 0.2)",
-
-  ":hover": {
-    background: "rgba(255, 255, 255, 0.2)",
-    transform: "translateY(-2px)",
-    boxShadow: "0 8px 24px rgba(139, 92, 246, 0.3)",
-    borderColor: "rgba(255, 255, 255, 0.3)",
-  } as any,
-
-  ":active": {
-    transform: "translateY(-1px)",
-  } as any,
 };
 
 const simpleSpinnerStyle: React.CSSProperties = {

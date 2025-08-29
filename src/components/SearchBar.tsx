@@ -155,10 +155,7 @@ const inputStyle: React.CSSProperties = {
   color: "#1F2937",
   fontWeight: "500",
 
-  // Placeholder styling
-  "::placeholder": {
-    color: "#9CA3AF",
-  } as any,
+  // Placeholder styling handled by CSS
 };
 
 const clearButtonStyle: React.CSSProperties = {
@@ -173,10 +170,4 @@ const clearButtonStyle: React.CSSProperties = {
   color: "#8B5CF6",
   transition: "all 0.2s ease",
   boxShadow: "0 2px 8px rgba(139, 92, 246, 0.08)",
-
-  ":hover": {
-    border: "1px solid rgba(139, 92, 246, 0.3)",
-    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
-    transform: "scale(1.05)",
-  } as any,
 };
