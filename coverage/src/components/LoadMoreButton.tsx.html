@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/graphql/queries.ts</title>
+    <title>Code coverage report for src/components/LoadMoreButton.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/graphql</a> queries.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> LoadMoreButton.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/108</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/108</span>
             </div>
         
             
@@ -156,7 +156,37 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -250,98 +280,113 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
-<span class="cstat-no" title="statement not covered" > * GraphQL queries for the Revvue Reviews Dashboard</span>
-<span class="cstat-no" title="statement not covered" > * Based on the actual API schema discovered from https://app.revvue.ai/graphql/</span>
+<span class="cstat-no" title="statement not covered" > * Load More Button Component</span>
+<span class="cstat-no" title="statement not covered" > * Clean, simple button for pagination - no overcomplicated animations</span>
 <span class="cstat-no" title="statement not covered" > */</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import { gql } from "@apollo/client";</span>
+<span class="cstat-no" title="statement not covered" >import { ChevronDown } from "lucide-react";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Query to fetch dummy reviews with pagination and filtering</span>
-<span class="cstat-no" title="statement not covered" > * Matches the exact API structure: dummyReviews returns DummyReviewQuery</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >export const GET_DUMMY_REVIEWS = gql`</span>
-<span class="cstat-no" title="statement not covered" >  query GetDummyReviews(</span>
-<span class="cstat-no" title="statement not covered" >    $source: String</span>
-<span class="cstat-no" title="statement not covered" >    $ratingMin: Int</span>
-<span class="cstat-no" title="statement not covered" >    $ratingMax: Int</span>
-<span class="cstat-no" title="statement not covered" >    $freeText: String</span>
-<span class="cstat-no" title="statement not covered" >    $offset: Int = 0</span>
-<span class="cstat-no" title="statement not covered" >    $limit: Int = 10</span>
-<span class="cstat-no" title="statement not covered" >  ) {</span>
-<span class="cstat-no" title="statement not covered" >    dummyReviews(</span>
-<span class="cstat-no" title="statement not covered" >      source: $source</span>
-<span class="cstat-no" title="statement not covered" >      ratingMin: $ratingMin</span>
-<span class="cstat-no" title="statement not covered" >      ratingMax: $ratingMax</span>
-<span class="cstat-no" title="statement not covered" >      freeText: $freeText</span>
-<span class="cstat-no" title="statement not covered" >      offset: $offset</span>
-<span class="cstat-no" title="statement not covered" >      limit: $limit</span>
-<span class="cstat-no" title="statement not covered" >    ) {</span>
-<span class="cstat-no" title="statement not covered" >      documents {</span>
-<span class="cstat-no" title="statement not covered" >        id</span>
-<span class="cstat-no" title="statement not covered" >        reviewTime</span>
-<span class="cstat-no" title="statement not covered" >        rating</span>
-<span class="cstat-no" title="statement not covered" >        reviewerName</span>
-<span class="cstat-no" title="statement not covered" >        reviewText</span>
-<span class="cstat-no" title="statement not covered" >        source</span>
-<span class="cstat-no" title="statement not covered" >        sourceUrl</span>
-<span class="cstat-no" title="statement not covered" >        language</span>
-<span class="cstat-no" title="statement not covered" >        translated</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      count</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >interface LoadMoreButtonProps {</span>
+<span class="cstat-no" title="statement not covered" >  onLoadMore: () =&gt; void;</span>
+<span class="cstat-no" title="statement not covered" >  loading?: boolean;</span>
+<span class="cstat-no" title="statement not covered" >  disabled?: boolean;</span>
+<span class="cstat-no" title="statement not covered" >  hasMore?: boolean;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export const LoadMoreButton = ({</span>
+<span class="cstat-no" title="statement not covered" >  onLoadMore,</span>
+<span class="cstat-no" title="statement not covered" >  loading = false,</span>
+<span class="cstat-no" title="statement not covered" >  disabled = false,</span>
+<span class="cstat-no" title="statement not covered" >  hasMore = true,</span>
+<span class="cstat-no" title="statement not covered" >}: LoadMoreButtonProps) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!hasMore) {</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div style={endMessageContainerStyle}&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;p style={endMessageStyle}&gt;🎉 You've seen all the reviews!&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Query to get a limited set of reviews for initial load</span>
-<span class="cstat-no" title="statement not covered" > * Uses the APP_CONFIG default limit</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >export const GET_INITIAL_REVIEWS = gql`</span>
-<span class="cstat-no" title="statement not covered" >  query GetInitialReviews($limit: Int = 5) {</span>
-<span class="cstat-no" title="statement not covered" >    dummyReviews(limit: $limit, offset: 0) {</span>
-<span class="cstat-no" title="statement not covered" >      documents {</span>
-<span class="cstat-no" title="statement not covered" >        id</span>
-<span class="cstat-no" title="statement not covered" >        reviewTime</span>
-<span class="cstat-no" title="statement not covered" >        rating</span>
-<span class="cstat-no" title="statement not covered" >        reviewerName</span>
-<span class="cstat-no" title="statement not covered" >        reviewText</span>
-<span class="cstat-no" title="statement not covered" >        source</span>
-<span class="cstat-no" title="statement not covered" >        sourceUrl</span>
-<span class="cstat-no" title="statement not covered" >        language</span>
-<span class="cstat-no" title="statement not covered" >        translated</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      count</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div style={containerStyle}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;button</span>
+<span class="cstat-no" title="statement not covered" >        onClick={onLoadMore}</span>
+<span class="cstat-no" title="statement not covered" >        disabled={loading || disabled}</span>
+<span class="cstat-no" title="statement not covered" >        style={{</span>
+<span class="cstat-no" title="statement not covered" >          ...buttonStyle,</span>
+<span class="cstat-no" title="statement not covered" >          opacity: loading || disabled ? 0.6 : 1,</span>
+<span class="cstat-no" title="statement not covered" >          cursor: loading || disabled ? "not-allowed" : "pointer",</span>
+<span class="cstat-no" title="statement not covered" >        }}</span>
+<span class="cstat-no" title="statement not covered" >      &gt;</span>
+<span class="cstat-no" title="statement not covered" >        {loading ? (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div style={simpleSpinnerStyle}&gt;&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            Loading more...</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/&gt;</span>
+<span class="cstat-no" title="statement not covered" >        ) : (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ChevronDown size={18} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            Load More Reviews</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/&gt;</span>
+<span class="cstat-no" title="statement not covered" >        )}</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Query to search reviews by text content</span>
-<span class="cstat-no" title="statement not covered" > * Uses the freeText parameter for search functionality</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >export const SEARCH_REVIEWS = gql`</span>
-<span class="cstat-no" title="statement not covered" >  query SearchReviews(</span>
-<span class="cstat-no" title="statement not covered" >    $searchTerm: String!</span>
-<span class="cstat-no" title="statement not covered" >    $limit: Int = 10</span>
-<span class="cstat-no" title="statement not covered" >    $offset: Int = 0</span>
-<span class="cstat-no" title="statement not covered" >  ) {</span>
-<span class="cstat-no" title="statement not covered" >    dummyReviews(freeText: $searchTerm, limit: $limit, offset: $offset) {</span>
-<span class="cstat-no" title="statement not covered" >      documents {</span>
-<span class="cstat-no" title="statement not covered" >        id</span>
-<span class="cstat-no" title="statement not covered" >        reviewTime</span>
-<span class="cstat-no" title="statement not covered" >        rating</span>
-<span class="cstat-no" title="statement not covered" >        reviewerName</span>
-<span class="cstat-no" title="statement not covered" >        reviewText</span>
-<span class="cstat-no" title="statement not covered" >        source</span>
-<span class="cstat-no" title="statement not covered" >        sourceUrl</span>
-<span class="cstat-no" title="statement not covered" >        language</span>
-<span class="cstat-no" title="statement not covered" >        translated</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      count</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" >// 🎨 CLEAN, SIMPLE STYLING</span>
+<span class="cstat-no" title="statement not covered" >const containerStyle: React.CSSProperties = {</span>
+<span class="cstat-no" title="statement not covered" >  display: "flex",</span>
+<span class="cstat-no" title="statement not covered" >  justifyContent: "center",</span>
+<span class="cstat-no" title="statement not covered" >  padding: "2rem 1rem",</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const buttonStyle: React.CSSProperties = {</span>
+<span class="cstat-no" title="statement not covered" >  display: "flex",</span>
+<span class="cstat-no" title="statement not covered" >  alignItems: "center",</span>
+<span class="cstat-no" title="statement not covered" >  gap: "0.5rem",</span>
+<span class="cstat-no" title="statement not covered" >  padding: "0.75rem 1.5rem",</span>
+<span class="cstat-no" title="statement not covered" >  background: "#3B82F6",</span>
+<span class="cstat-no" title="statement not covered" >  color: "white",</span>
+<span class="cstat-no" title="statement not covered" >  border: "none",</span>
+<span class="cstat-no" title="statement not covered" >  borderRadius: "8px",</span>
+<span class="cstat-no" title="statement not covered" >  fontSize: "0.875rem",</span>
+<span class="cstat-no" title="statement not covered" >  fontWeight: "500",</span>
+<span class="cstat-no" title="statement not covered" >  cursor: "pointer",</span>
+<span class="cstat-no" title="statement not covered" >  transition: "all 0.2s ease",</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  ":hover": {</span>
+<span class="cstat-no" title="statement not covered" >    background: "#2563EB",</span>
+<span class="cstat-no" title="statement not covered" >    transform: "translateY(-1px)",</span>
+<span class="cstat-no" title="statement not covered" >    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",</span>
+<span class="cstat-no" title="statement not covered" >  } as any,</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  ":active": {</span>
+<span class="cstat-no" title="statement not covered" >    transform: "translateY(0)",</span>
+<span class="cstat-no" title="statement not covered" >  } as any,</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const simpleSpinnerStyle: React.CSSProperties = {</span>
+<span class="cstat-no" title="statement not covered" >  width: "16px",</span>
+<span class="cstat-no" title="statement not covered" >  height: "16px",</span>
+<span class="cstat-no" title="statement not covered" >  border: "2px solid rgba(255, 255, 255, 0.3)",</span>
+<span class="cstat-no" title="statement not covered" >  borderTop: "2px solid white",</span>
+<span class="cstat-no" title="statement not covered" >  borderRadius: "50%",</span>
+<span class="cstat-no" title="statement not covered" >  animation: "spin 1s linear infinite",</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const endMessageContainerStyle: React.CSSProperties = {</span>
+<span class="cstat-no" title="statement not covered" >  display: "flex",</span>
+<span class="cstat-no" title="statement not covered" >  justifyContent: "center",</span>
+<span class="cstat-no" title="statement not covered" >  padding: "2rem 1rem",</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const endMessageStyle: React.CSSProperties = {</span>
+<span class="cstat-no" title="statement not covered" >  color: "#6B7280",</span>
+<span class="cstat-no" title="statement not covered" >  fontSize: "0.875rem",</span>
+<span class="cstat-no" title="statement not covered" >  margin: 0,</span>
+<span class="cstat-no" title="statement not covered" >  textAlign: "center",</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
