@@ -8,8 +8,8 @@ export const API_CONFIG = {
 
 export const APP_CONFIG = {
   TITLE: "Revvue Reviews Dashboard",
-  DEFAULT_REVIEWS_LIMIT: 5,
-  LOAD_MORE_LIMIT: 10,
+  DEFAULT_REVIEWS_LIMIT: 5, // Show 5 initially as required
+  LOAD_MORE_LIMIT: 10, // Load 10 more each time
   SEARCH_DEBOUNCE_MS: 300,
 } as const;
 

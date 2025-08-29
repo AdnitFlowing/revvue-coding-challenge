@@ -124,20 +124,22 @@ const glassSearchBarStyle: React.CSSProperties = {
   width: "100%",
   maxWidth: "500px",
 
-  // 🔮 GLASS MORPHISM MAGIC - Enhanced for light background
-  background: "rgba(139, 92, 246, 0.1)",
+  // 🔮 WHITE BACKGROUND WITH GLASS MORPHISM OUTLINE
+  background: "#FFFFFF",
   backdropFilter: "blur(20px)",
   WebkitBackdropFilter: "blur(20px)", // Safari support
-  border: "1px solid rgba(139, 92, 246, 0.2)",
+  border: "2px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "20px",
   boxShadow: `
-    0 8px 32px rgba(139, 92, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3)
+    0 8px 32px rgba(139, 92, 246, 0.08),
+    inset 0 1px 0 rgba(139, 92, 246, 0.05)
   `,
 
   // Smooth transitions
   transition: "all 0.3s ease",
   cursor: "text",
+
+  // Focus styles handled by input focus management
 };
 
 const searchIconStyle: React.CSSProperties = {
@@ -161,7 +163,7 @@ const inputStyle: React.CSSProperties = {
 };
 
 const clearButtonStyle: React.CSSProperties = {
-  background: "rgba(139, 92, 246, 0.1)",
+  background: "#FFFFFF",
   border: "1px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "50%",
   padding: "0.5rem",
@@ -171,9 +173,11 @@ const clearButtonStyle: React.CSSProperties = {
   justifyContent: "center",
   color: "#8B5CF6",
   transition: "all 0.2s ease",
+  boxShadow: "0 2px 8px rgba(139, 92, 246, 0.08)",
 
   ":hover": {
-    background: "rgba(139, 92, 246, 0.2)",
+    border: "1px solid rgba(139, 92, 246, 0.3)",
+    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.15)",
     transform: "scale(1.05)",
   } as any,
 };

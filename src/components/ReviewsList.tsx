@@ -51,7 +51,6 @@ export const ReviewsList = ({
   if (reviews.length === 0) {
     return (
       <div style={emptyContainerStyle}>
-        <div style={emptyIconStyle}>📝</div>
         <h3 style={emptyTitleStyle}>No Reviews Yet</h3>
         <p style={emptyMessageStyle}>{emptyMessage}</p>
       </div>

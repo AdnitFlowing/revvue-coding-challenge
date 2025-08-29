@@ -177,17 +177,20 @@ const filterToggleStyle: React.CSSProperties = {
   alignItems: "center",
   gap: "0.5rem",
   padding: "0.75rem 1.5rem",
-  background: "rgba(139, 92, 246, 0.1)",
-  border: "1px solid rgba(139, 92, 246, 0.2)",
+  background: "#FFFFFF",
+  border: "2px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "12px",
   cursor: "pointer",
   fontSize: "0.875rem",
   fontWeight: "500",
+  color: "#8B5CF6",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  boxShadow: "0 4px 16px rgba(139, 92, 246, 0.08)",
 
   ":hover": {
-    background: "rgba(139, 92, 246, 0.15)",
+    border: "2px solid rgba(139, 92, 246, 0.3)",
     transform: "translateY(-1px)",
+    boxShadow: "0 8px 24px rgba(139, 92, 246, 0.12)",
   } as any,
 };
 
@@ -218,12 +221,12 @@ const clearFiltersStyle: React.CSSProperties = {
   } as any,
 };
 
-// 🔮 GLASS MORPHISM FILTER PANEL
+// 🔮 WHITE BACKGROUND FILTER PANEL WITH GLASS MORPHISM OUTLINE
 const filterPanelStyle: React.CSSProperties = {
-  background: "rgba(139, 92, 246, 0.05)",
+  background: "#FFFFFF",
   backdropFilter: "blur(20px)",
   WebkitBackdropFilter: "blur(20px)",
-  border: "1px solid rgba(139, 92, 246, 0.1)",
+  border: "2px solid rgba(139, 92, 246, 0.15)",
   borderRadius: "16px",
   padding: "1.5rem",
   boxShadow: "0 8px 32px rgba(139, 92, 246, 0.08)",
@@ -254,16 +257,20 @@ const ratingButtonStyle: React.CSSProperties = {
   alignItems: "center",
   gap: "0.25rem",
   padding: "0.5rem 0.75rem",
-  background: "rgba(139, 92, 246, 0.08)",
-  border: "1px solid rgba(139, 92, 246, 0.15)",
+  background: "#FFFFFF",
+  border: "1px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "8px",
   cursor: "pointer",
   fontSize: "0.75rem",
   fontWeight: "500",
+  color: "#8B5CF6",
   transition: "all 0.3s ease",
+  boxShadow: "0 2px 8px rgba(139, 92, 246, 0.05)",
 
   ":hover": {
-    background: "rgba(139, 92, 246, 0.12)",
+    border: "1px solid rgba(139, 92, 246, 0.3)",
+    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
+    transform: "translateY(-1px)",
   } as any,
 };
 
@@ -275,15 +282,19 @@ const sourceFilterStyle: React.CSSProperties = {
 
 const sourceButtonStyle: React.CSSProperties = {
   padding: "0.5rem 1rem",
-  background: "rgba(139, 92, 246, 0.08)",
-  border: "1px solid rgba(139, 92, 246, 0.15)",
+  background: "#FFFFFF",
+  border: "1px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "8px",
   cursor: "pointer",
   fontSize: "0.75rem",
   fontWeight: "500",
+  color: "#8B5CF6",
   transition: "all 0.3s ease",
+  boxShadow: "0 2px 8px rgba(139, 92, 246, 0.05)",
 
   ":hover": {
-    background: "rgba(139, 92, 246, 0.12)",
+    border: "1px solid rgba(139, 92, 246, 0.3)",
+    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)",
+    transform: "translateY(-1px)",
   } as any,
 };

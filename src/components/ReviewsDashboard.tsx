@@ -10,6 +10,7 @@ import { LoadMoreButton } from "./LoadMoreButton";
 import { StatsCard } from "./StatsCard";
 import { FilterControls } from "./FilterControls";
 import { Star, TrendingUp, MessageCircle } from "lucide-react";
+import { APP_CONFIG } from "../config/constants";
 
 interface Review {
   id: string;
@@ -28,7 +29,6 @@ interface ApiResponse {
 }
 
 export const ReviewsDashboard = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,7 +46,7 @@ export const ReviewsDashboard = () => {
     fetchReviews();
   }, []);
 
-  const fetchReviews = async (search?: string, append = false) => {
+  const fetchReviews = async (search?: string, append = false, offset = 0) => {
     try {
       if (!append) setLoading(true);
 
@@ -65,7 +65,7 @@ export const ReviewsDashboard = () => {
              }
            }`
         : `query GetReviews {
-             dummyReviews(limit: ${append ? 20 : 5}) {
+             dummyReviews(limit: ${append ? 50 : 15}) {
                documents {
                  id
                  reviewTime
@@ -101,10 +101,10 @@ export const ReviewsDashboard = () => {
       if (append) {
         const newReviews = [...allReviews, ...data.dummyReviews.documents];
         setAllReviews(newReviews);
-        setReviews(newReviews);
+        // Don't update reviews here - let filteredReviews handle display
       } else {
         setAllReviews(data.dummyReviews.documents);
-        setReviews(data.dummyReviews.documents);
+        // Don't update reviews here - let filteredReviews handle display
       }
 
       setTotalCount(data.dummyReviews.count);
@@ -134,7 +134,14 @@ export const ReviewsDashboard = () => {
   }, []);
 
   const handleLoadMore = () => {
-    fetchReviews(searchTerm || undefined, true);
+    // First, try to show more from already loaded reviews
+    if (hasMoreToDisplay) {
+      setDisplayLimit((prev) => prev + 5);
+    } else if (hasMoreFromApi) {
+      // If we've shown all loaded reviews, fetch more from API
+      const currentOffset = allReviews.length;
+      fetchReviews(searchTerm || undefined, true, currentOffset);
+    }
   };
 
   // Handle KPI card clicks with enhanced glass morphism
@@ -151,6 +158,9 @@ export const ReviewsDashboard = () => {
   const handleFilterChange = useCallback((newFilters: typeof filters) => {
     setFilters(newFilters);
   }, []);
+
+  // Client-side pagination state
+  const [displayLimit, setDisplayLimit] = useState(5);
 
   // Smart filtering logic - filter client-side for better performance
   const filteredReviews = useMemo(() => {
@@ -181,8 +191,9 @@ export const ReviewsDashboard = () => {
       );
     }
 
-    return filtered;
-  }, [allReviews, searchTerm, filters]);
+    // Apply display limit for pagination
+    return filtered.slice(0, displayLimit);
+  }, [allReviews, searchTerm, filters, displayLimit]);
 
   // Get available sources for filter dropdown
   const availableSources = useMemo(() => {
@@ -192,7 +203,13 @@ export const ReviewsDashboard = () => {
     return sources.sort();
   }, [allReviews]);
 
-  const hasMore = reviews.length < totalCount;
+  // Check if there are more reviews to display (either from API or locally)
+  const hasMoreFromApi = allReviews.length < totalCount;
+  const hasMoreToDisplay = displayLimit < allReviews.length;
+  const hasMore = hasMoreFromApi || hasMoreToDisplay;
+
+  // Load More logic: Show more reviews from already loaded data first,
+  // then fetch more from API if needed
 
   // Calculate stats for glass morphism cards based on filtered results
   const averageRating = useMemo(() => {
@@ -283,17 +300,14 @@ export const ReviewsDashboard = () => {
         }
       />
 
-      {/* Load More Button */}
-      {allReviews.length > 0 &&
-        !searchTerm &&
-        filters.sources.length === 0 &&
-        !filters.minRating && (
-          <LoadMoreButton
-            onLoadMore={handleLoadMore}
-            loading={loading}
-            hasMore={hasMore}
-          />
-        )}
+      {/* Load More Button - Always show for demo if there are more reviews */}
+      {hasMore && (
+        <LoadMoreButton
+          onLoadMore={handleLoadMore}
+          loading={loading}
+          hasMore={hasMore}
+        />
+      )}
     </div>
   );
 };
