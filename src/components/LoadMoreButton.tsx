@@ -21,7 +21,7 @@ export const LoadMoreButton = ({
   if (!hasMore) {
     return (
       <div style={endMessageContainerStyle}>
-        <p style={endMessageStyle}>🎉 You've seen all the reviews!</p>
+        <p style={endMessageStyle}>You've seen all the reviews!</p>
       </div>
     );
   }

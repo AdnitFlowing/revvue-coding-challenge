@@ -5,6 +5,7 @@
 
 import { Star, Calendar, MapPin, User } from "lucide-react";
 import { formatDate } from "../utils/formatters";
+import { useState } from "react";
 
 interface ReviewCardProps {
   id: string;
@@ -22,6 +23,9 @@ export const ReviewCard = ({
   reviewText,
   source,
 }: ReviewCardProps) => {
+  const [hoveredElement, setHoveredElement] = useState<string | null>(null);
+  const [clickedElement, setClickedElement] = useState<string | null>(null);
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -35,12 +39,27 @@ export const ReviewCard = ({
     ));
   };
 
+  const handleElementClick = (element: string) => {
+    setClickedElement(element);
+    setTimeout(() => setClickedElement(null), 3000);
+  };
+
   return (
     <div style={cardStyle}>
       {/* Glass Morphism Header */}
       <div style={glassHeaderStyle}>
         <div style={avatarContainerStyle}>
-          <div style={avatarStyle}>
+          {/* 🔮 GLASS MORPHISM AVATAR */}
+          <div
+            style={{
+              ...avatarStyle,
+              ...(hoveredElement === "avatar" ? glassHoverStyle : {}),
+              ...(clickedElement === "avatar" ? glassClickStyle : {}),
+            }}
+            onMouseEnter={() => setHoveredElement("avatar")}
+            onMouseLeave={() => setHoveredElement(null)}
+            onClick={() => handleElementClick("avatar")}
+          >
             <User size={18} style={{ color: "#8B5CF6" }} />
           </div>
           <div>
@@ -49,7 +68,19 @@ export const ReviewCard = ({
             </h4>
             <div style={ratingContainerStyle}>
               <div style={starsStyle}>{renderStars(rating)}</div>
-              <span style={ratingTextStyle}>{rating}.0</span>
+              {/* 🔮 GLASS MORPHISM RATING */}
+              <span
+                style={{
+                  ...ratingTextStyle,
+                  ...(hoveredElement === "rating" ? glassHoverStyle : {}),
+                  ...(clickedElement === "rating" ? glassClickStyle : {}),
+                }}
+                onMouseEnter={() => setHoveredElement("rating")}
+                onMouseLeave={() => setHoveredElement(null)}
+                onClick={() => handleElementClick("rating")}
+              >
+                {rating}.0
+              </span>
             </div>
           </div>
         </div>
@@ -73,7 +104,19 @@ export const ReviewCard = ({
 
       {/* Glass Morphism Footer */}
       <div style={glassFooterStyle}>
-        <span style={sourceTagStyle}>{source.toUpperCase()}</span>
+        {/* 🔮 GLASS MORPHISM SOURCE BADGE */}
+        <span
+          style={{
+            ...sourceTagStyle,
+            ...(hoveredElement === "source" ? glassHoverStyle : {}),
+            ...(clickedElement === "source" ? glassClickStyle : {}),
+          }}
+          onMouseEnter={() => setHoveredElement("source")}
+          onMouseLeave={() => setHoveredElement(null)}
+          onClick={() => handleElementClick("source")}
+        >
+          {source.toUpperCase()}
+        </span>
       </div>
     </div>
   );
@@ -124,18 +167,21 @@ const avatarStyle: React.CSSProperties = {
   width: "40px",
   height: "40px",
   borderRadius: "12px",
-  background: "linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)",
+  background: "rgba(139, 92, 246, 0.1)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  border: "1px solid #E9D5FF",
+  border: "1px solid rgba(139, 92, 246, 0.15)",
+  cursor: "pointer",
+  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
 };
 
 const reviewerNameStyle: React.CSSProperties = {
   margin: "0 0 0.5rem 0",
-  fontSize: "1rem",
+  fontSize: "1.125rem", // Bigger text
   fontWeight: "600",
   color: "#1F2937",
+  textAlign: "left", // Left aligned
 };
 
 const ratingContainerStyle: React.CSSProperties = {
@@ -153,9 +199,12 @@ const ratingTextStyle: React.CSSProperties = {
   fontSize: "0.875rem",
   fontWeight: "600",
   color: "#8B5CF6",
-  background: "#F3E8FF",
+  background: "rgba(139, 92, 246, 0.1)",
   padding: "0.25rem 0.5rem",
-  borderRadius: "6px",
+  borderRadius: "8px",
+  cursor: "pointer",
+  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+  border: "1px solid rgba(139, 92, 246, 0.15)",
 };
 
 const metaInfoStyle: React.CSSProperties = {
@@ -185,11 +234,12 @@ const contentStyle: React.CSSProperties = {
 
 const reviewTextStyle: React.CSSProperties = {
   margin: 0,
-  fontSize: "1rem",
+  fontSize: "1.125rem", // Bigger text
   lineHeight: "1.6",
   color: "#374151",
   fontStyle: "italic",
   fontWeight: "400",
+  textAlign: "left", // Left aligned
 };
 
 // 🔮 GLASS MORPHISM FOOTER
@@ -205,9 +255,37 @@ const glassFooterStyle: React.CSSProperties = {
 const sourceTagStyle: React.CSSProperties = {
   fontSize: "0.625rem",
   fontWeight: "600",
-  color: "rgba(255, 255, 255, 0.9)",
-  background: "rgba(139, 92, 246, 0.2)",
+  color: "#8B5CF6",
+  background: "rgba(139, 92, 246, 0.1)",
   padding: "0.25rem 0.75rem",
   borderRadius: "12px",
   letterSpacing: "0.5px",
+  cursor: "pointer",
+  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+  border: "1px solid rgba(139, 92, 246, 0.15)",
+};
+
+// 🔮 REVVUE BRAND GRADIENT HOVER EFFECTS
+const glassHoverStyle: React.CSSProperties = {
+  background:
+    "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)",
+  borderRadius: "14px",
+  boxShadow: "rgba(76, 62, 247, 0.3) 0px 10px 15px -7px",
+  opacity: 1,
+  willChange: "auto",
+  transform: "scale(1.05)",
+  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)", // Slower hover
+  color: "#FFFFFF", // White text on gradient
+};
+
+// 🔥 REVVUE BRAND GRADIENT CLICK EFFECTS
+const glassClickStyle: React.CSSProperties = {
+  background:
+    "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(173, 0, 255) 132.583%)",
+  borderRadius: "14px",
+  boxShadow: "rgba(76, 62, 247, 0.4) 0px 15px 25px -7px",
+  transform: "scale(1.1)",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  color: "#FFFFFF", // White text on gradient
+  border: "none", // No border on the beautiful gradient
 };

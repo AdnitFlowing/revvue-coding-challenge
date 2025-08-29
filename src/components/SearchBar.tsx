@@ -124,15 +124,15 @@ const glassSearchBarStyle: React.CSSProperties = {
   width: "100%",
   maxWidth: "500px",
 
-  // 🔮 GLASS MORPHISM MAGIC
-  background: "rgba(255, 255, 255, 0.1)",
+  // 🔮 GLASS MORPHISM MAGIC - Enhanced for light background
+  background: "rgba(139, 92, 246, 0.1)",
   backdropFilter: "blur(20px)",
   WebkitBackdropFilter: "blur(20px)", // Safari support
-  border: "1px solid rgba(255, 255, 255, 0.2)",
+  border: "1px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "20px",
   boxShadow: `
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2)
+    0 8px 32px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3)
   `,
 
   // Smooth transitions
@@ -141,7 +141,7 @@ const glassSearchBarStyle: React.CSSProperties = {
 };
 
 const searchIconStyle: React.CSSProperties = {
-  color: "rgba(255, 255, 255, 0.8)",
+  color: "#8B5CF6",
   flexShrink: 0,
 };
 
@@ -151,29 +151,29 @@ const inputStyle: React.CSSProperties = {
   border: "none",
   outline: "none",
   fontSize: "1rem",
-  color: "rgba(255, 255, 255, 0.9)",
-  fontWeight: "400",
+  color: "#1F2937",
+  fontWeight: "500",
 
   // Placeholder styling
   "::placeholder": {
-    color: "rgba(255, 255, 255, 0.6)",
+    color: "#9CA3AF",
   } as any,
 };
 
 const clearButtonStyle: React.CSSProperties = {
-  background: "rgba(255, 255, 255, 0.1)",
-  border: "1px solid rgba(255, 255, 255, 0.2)",
+  background: "rgba(139, 92, 246, 0.1)",
+  border: "1px solid rgba(139, 92, 246, 0.2)",
   borderRadius: "50%",
   padding: "0.5rem",
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: "rgba(255, 255, 255, 0.8)",
+  color: "#8B5CF6",
   transition: "all 0.2s ease",
 
   ":hover": {
-    background: "rgba(255, 255, 255, 0.2)",
+    background: "rgba(139, 92, 246, 0.2)",
     transform: "scale(1.05)",
   } as any,
 };

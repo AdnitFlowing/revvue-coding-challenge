@@ -32,6 +32,7 @@ export const ReviewsDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [totalCount, setTotalCount] = useState(0);
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   // Fetch initial reviews
   useEffect(() => {
@@ -126,6 +127,16 @@ export const ReviewsDashboard = () => {
     fetchReviews(searchTerm || undefined, true);
   };
 
+  // Handle KPI card clicks with enhanced glass morphism
+  const handleCardClick = useCallback((cardId: string) => {
+    setActiveCard(cardId);
+
+    // Reset after 4 seconds for longer enjoyment of the effect
+    setTimeout(() => {
+      setActiveCard(null);
+    }, 4000);
+  }, []);
+
   const hasMore = reviews.length < totalCount;
 
   // Calculate stats for glass morphism cards
@@ -139,10 +150,10 @@ export const ReviewsDashboard = () => {
 
   return (
     <div style={dashboardStyle}>
-      {/* Header */}
-      <div style={headerStyle}>
-        <h1 style={titleStyle}>Revvue Reviews Dashboard</h1>
-        <p style={subtitleStyle}>Discover what customers are saying ✨</p>
+      {/* Clean Dashboard Title */}
+      <div style={titleContainerStyle}>
+        <h1 style={mainTitleStyle}>Revvue Reviews Dashboard</h1>
+        <p style={mainSubtitleStyle}>Discover what customers are saying</p>
       </div>
 
       {/* Glass Morphism Stats Cards */}
@@ -151,6 +162,8 @@ export const ReviewsDashboard = () => {
           title="Total Reviews"
           value={totalCount}
           subtitle="All time"
+          onClick={() => handleCardClick("total")}
+          isActive={activeCard === "total"}
           icon={
             <MessageCircle
               size={18}
@@ -162,6 +175,8 @@ export const ReviewsDashboard = () => {
           title="Average Rating"
           value={`${averageRating} ⭐`}
           subtitle="Current display"
+          onClick={() => handleCardClick("rating")}
+          isActive={activeCard === "rating"}
           icon={
             <Star size={18} style={{ color: "rgba(255, 255, 255, 0.9)" }} />
           }
@@ -172,6 +187,8 @@ export const ReviewsDashboard = () => {
           subtitle={
             searchTerm ? `Results for "${searchTerm}"` : "Recent reviews"
           }
+          onClick={() => handleCardClick("showing")}
+          isActive={activeCard === "showing"}
           icon={
             <TrendingUp
               size={18}
@@ -216,13 +233,35 @@ export const ReviewsDashboard = () => {
 // 🎨 STUNNING DASHBOARD STYLING
 const dashboardStyle: React.CSSProperties = {
   minHeight: "100vh",
-  background: "transparent", // Let the gradient from index.css show through
+  background: "transparent", // Let the light background from index.css show through
   paddingBottom: "2rem",
+  paddingTop: "0", // No top padding since header handles its own spacing
 };
 
-const headerStyle: React.CSSProperties = {
+// 🎨 CLEAN TITLE STYLING
+const titleContainerStyle: React.CSSProperties = {
   textAlign: "center",
-  padding: "3rem 1rem 1rem",
+  padding: "3rem 1rem 2rem",
+};
+
+const mainTitleStyle: React.CSSProperties = {
+  fontSize: "2.5rem",
+  fontWeight: "800",
+  background:
+    "linear-gradient(105deg, rgb(76, 62, 247) 24.8649%, rgb(219, 0, 255) 132.583%)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+  margin: "0 0 0.5rem 0",
+  textAlign: "center",
+};
+
+const mainSubtitleStyle: React.CSSProperties = {
+  fontSize: "1.1rem",
+  color: "#6B7280",
+  margin: 0,
+  fontWeight: "300",
+  textAlign: "center",
 };
 
 const statsContainerStyle: React.CSSProperties = {
@@ -232,19 +271,4 @@ const statsContainerStyle: React.CSSProperties = {
   padding: "0 1rem 2rem",
   maxWidth: "800px",
   margin: "0 auto",
-};
-
-const titleStyle: React.CSSProperties = {
-  fontSize: "2.5rem",
-  fontWeight: "800",
-  color: "rgba(255, 255, 255, 0.95)",
-  margin: "0 0 0.5rem 0",
-  textShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-};
-
-const subtitleStyle: React.CSSProperties = {
-  fontSize: "1.1rem",
-  color: "rgba(255, 255, 255, 0.8)",
-  margin: 0,
-  fontWeight: "300",
 };
