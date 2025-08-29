@@ -1,5 +1,4 @@
 /**
- * Comprehensive tests for FilterControls component
  * Tests user interactions, state management, and filter logic
  */
 

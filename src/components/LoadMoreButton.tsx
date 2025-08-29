@@ -67,7 +67,7 @@ const buttonStyle: React.CSSProperties = {
   background: "rgba(255, 255, 255, 0.15)",
   backdropFilter: "blur(20px)",
   WebkitBackdropFilter: "blur(20px)",
-  color: "rgba(255, 255, 255, 0.95)",
+  color: "black",
   border: "1px solid rgba(255, 255, 255, 0.2)",
   borderRadius: "16px",
   fontSize: "0.875rem",
